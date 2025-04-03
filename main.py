@@ -2,9 +2,10 @@ import streamlit as st
 import pathlib
 from PIL import Image
 import google.generativeai as genai
+from pages import imageBase 
 
 # Configure the API key directly in the script
-
+API_KEY = 'AIzaSyCpLMWak0THJIeAduww7fZM0SePiqTgt2Y'
 genai.configure(api_key=API_KEY)
 
 # Generation configuration
@@ -51,16 +52,30 @@ def send_message_to_model(message, image_path):
 
 # Streamlit app
 def main():
+     # Set page configuration
     st.set_page_config(page_title="AI Code Generator", initial_sidebar_state="expanded")
+
+    # Sidebar navigation
+    st.sidebar.title("Navigation")
     st.sidebar.page_link("main.py", label="Home", icon="🏠")
     st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="1️⃣")
     st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="2️⃣")
     st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")
 
-    st.page_link("main.py", label="Home", icon="🏠")
-    st.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="1️⃣")
-    st.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="2️⃣")
-    st.page_link("http://www.google.com", label="Google", icon="🌎")
+
+    # Get the current page from query parameters
+    page = st.query_params.get("page", "Home")
+
+    # Page routing logic
+    if page == "Home":
+        st.title("AI Code Generator 👨‍💻")
+        st.write("Welcome to the AI Code Generator! You can use this app to generate code snippets based on text or images.")
+    elif page == "ImageBase":
+        st.subheader("Image Base AI Code Generator")
+    elif page == "TextBase":
+        st.subheader("Text Base AI Code Generator")
+    elif page == "Google":
+        st.subheader("Google")
 
 if __name__ == "__main__":
     main()
