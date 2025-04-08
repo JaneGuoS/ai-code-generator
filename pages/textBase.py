@@ -47,7 +47,12 @@ def send_message_to_model(message):
 
 # Streamlit app
 def main():
-    st.title("Text Base AI Code Generator 👨‍💻 ")
+    # Sidebar navigation
+    st.sidebar.page_link("main.py", label="Home", icon="🏠")
+    st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="👨‍💻")
+    st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="📖")
+    st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")
+    st.title("Text Base AI Code Generator 📖 ")
 
     try:
         # Get the text description

@@ -53,29 +53,17 @@ def send_message_to_model(message, image_path):
 # Streamlit app
 def main():
      # Set page configuration
-    st.set_page_config(page_title="AI Code Generator", initial_sidebar_state="expanded")
+    st.set_page_config(page_title="AI Code Generator 🏠", initial_sidebar_state="expanded")
 
     # Sidebar navigation
-    st.sidebar.title("Navigation")
     st.sidebar.page_link("main.py", label="Home", icon="🏠")
     st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="1️⃣")
     st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="2️⃣")
     st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")
 
+    st.title("AI Code Generator 🏠")
+    st.write("Welcome to the AI Code Generator! You can use this app to generate code snippets based on text or images.")
 
-    # Get the current page from query parameters
-    page = st.query_params.get("page", "Home")
-
-    # Page routing logic
-    if page == "Home":
-        st.title("AI Code Generator 👨‍💻")
-        st.write("Welcome to the AI Code Generator! You can use this app to generate code snippets based on text or images.")
-    elif page == "ImageBase":
-        st.subheader("Image Base AI Code Generator")
-    elif page == "TextBase":
-        st.subheader("Text Base AI Code Generator")
-    elif page == "Google":
-        st.subheader("Google")
 
 if __name__ == "__main__":
     main()

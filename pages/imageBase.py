@@ -51,6 +51,11 @@ def send_message_to_model(message, image_path):
 
 # Streamlit app
 def main():
+    # Sidebar navigation
+    st.sidebar.page_link("main.py", label="Home", icon="🏠")
+    st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="👨‍💻")
+    st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="📖")
+    st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")
     st.title("Image Base AI Code Generator 👨‍💻 ")
 
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
