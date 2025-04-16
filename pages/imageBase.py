@@ -25,7 +25,7 @@ safety_settings = [
 ]
 
 # Model name
-MODEL_NAME = "Image Base AI Code Generator"
+MODEL_NAME = "gemini-1.5-pro-latest"
 
 # Framework selection (e.g., Tailwind, Bootstrap, etc.)
 framework = "Regular CSS use flex grid etc"  # Change this to "Bootstrap" or any other framework as needed
@@ -53,6 +53,7 @@ def send_message_to_model(message, image_path):
 def main():
     # Sidebar navigation
     st.sidebar.page_link("main.py", label="Home", icon="🏠")
+    st.sidebar.page_link("pages/requirementChat.py", label="Solution Generator based on requirement", icon="💬")
     st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="👨‍💻")
     st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="📖")
     st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")

@@ -1,0 +1,169 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rando</title>
+    <style>
+        body {
+            background-color: #181926;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #ddd;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 12px;
+            padding: 15px; /* Increased padding */
+            background: linear-gradient(to right, #8a3ffc, #e833ff);
+        }
+
+        .header__title {
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .header__subtitle {
+            font-size: 0.9em; /* Slightly larger font size */
+            color: #c0c0c0; /* Lighter gray */
+            text-align: center;
+            margin-bottom: 20px; /* Increased margin */
+        }
+
+        .header__buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            width: 100%;
+        }
+
+        .button {
+            background: linear-gradient(to right, #8a3ffc, #e833ff);
+            color: white;
+            border: none;
+            padding: 10px 20px; /* Adjusted padding */
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            flex: 1 0 auto; /* Allow buttons to grow and shrink */
+            text-align: center;
+        }
+
+        .button + span {
+            font-size: 0.8em;
+            color: lightgray;
+            margin-top: 5px;
+            display: block;
+            text-align: center;
+        }
+        .main {
+            background-color: #232431;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Responsive grid */
+            gap: 15px;
+            position: relative;
+        }
+
+        .number-tile {
+            background-color: #1f202b;
+            border: 2px solid #ccad60; /* Thicker border */
+            border-radius: 8px;
+            font-size: 2.5em;
+            color: #d9d4a9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1/1;
+        }
+
+        .item-count {
+            background-color: #1c1d28;
+            color: #aaa;
+            padding: 5px 10px;
+            border-radius: 8px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+        }
+
+        .footer {
+            background-color: #232431;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 0.8em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 5px;
+        }
+
+        .footer span {
+            color: #ddd;
+        }
+         .footer .ctrl-c {
+            background-color: #1c1d28;
+            padding: 3px 8px;
+            border-radius: 5px;
+         }
+
+        .footer .heart {
+            color: #e9508b;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="header__title">Rando</h1>
+        <div class="header__subtitle">List Randomizer<br>Shuffle with style</div>
+        <div class="header__buttons">
+            <button class="button">Randomize +</button><span>R</span>
+            <button class="button">Settings ⚙</button><span>S</span>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="number-tile">5</div>
+        <div class="number-tile">2</div>
+        <div class="number-tile">7</div>
+        <div class="number-tile">3</div>
+        <div class="number-tile">6</div>
+        <div class="number-tile">4</div>
+        <div class="number-tile">1</div>
+        <div class="item-count">7 items</div>
+    </div>
+
+    <div class="footer">
+        <span>R</span><span>Randomize</span>
+        <span>|</span> <span>S</span><span>Settings</span> 
+        <span>|</span> <span class="ctrl-c">Ctrl+C</span><span>Copy ▼</span> 
+        <span>|</span><span class="heart">❤️</span><span> Made with by Zinefer</span>
+    </div>
+</body>
+</html>
+```

@@ -2,7 +2,7 @@ import streamlit as st
 import pathlib
 from PIL import Image
 import google.generativeai as genai
-from pages import imageBase 
+import json
 
 # Configure the API key directly in the script
 API_KEY = 'AIzaSyCpLMWak0THJIeAduww7fZM0SePiqTgt2Y'
@@ -26,7 +26,7 @@ safety_settings = [
 ]
 
 # Model name
-MODEL_NAME = "AI Code Generator"
+MODEL_NAME = "gemini-1.5-pro-latest"
 
 # Framework selection (e.g., Tailwind, Bootstrap, etc.)
 framework = "Regular CSS use flex grid etc"  # Change this to "Bootstrap" or any other framework as needed
@@ -42,29 +42,40 @@ model = genai.GenerativeModel(
 chat_session = model.start_chat(history=[])
 
 # Function to send a message to the model
-def send_message_to_model(message, image_path):
-    image_input = {
-        'mime_type': 'image/jpeg',
-        'data': pathlib.Path(image_path).read_bytes()
-    }
-    response = chat_session.send_message([message, image_input])
+# Function to send a message to the model
+def send_message_to_model(message):
+    response = chat_session.send_message(message)
     return response.text
 
 # Streamlit app
 def main():
-     # Set page configuration
-    st.set_page_config(page_title="AI Code Generator 🏠", initial_sidebar_state="expanded")
-
     # Sidebar navigation
     st.sidebar.page_link("main.py", label="Home", icon="🏠")
     st.sidebar.page_link("pages/requirementChat.py", label="Solution Generator based on requirement", icon="💬")
-    st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="1️⃣")
-    st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="2️⃣")
+    st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="👨‍💻")
+    st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="📖")
     st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")
+    st.title("Solution Generator 💬 ")
 
-    st.title("AI Code Generator 🏠")
-    st.write("Welcome to the AI Code Generator! You can use this app to generate code snippets based on text or images.")
+    try:
+        response = None
+        # Get the prompt
+        userPrompt = st.text_area("Input the requirement")
 
+        #Get the codes queried by the prompt
+        if st.button("Generate Solution"):
+            st.write("🧑‍💻 Generating Solution...")
+            if response:
+               refine_prompt = f"Refine the solution based om the user prompt: {userPrompt} and based on previous response: {response}"
+               response = send_message_to_model(refine_prompt)
+            else:
+              response = send_message_to_model(userPrompt)
+
+            st.subheader("Generated Solution:")
+            st.text(response)
+
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()

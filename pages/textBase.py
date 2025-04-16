@@ -26,7 +26,7 @@ safety_settings = [
 ]
 
 # Model name
-MODEL_NAME = "gemini-1.5-pro"
+MODEL_NAME = "gemini-1.5-pro-latest"
 
 # Framework selection (e.g., Tailwind, Bootstrap, etc.)
 framework = "Regular CSS use flex grid etc"  # Change this to "Bootstrap" or any other framework as needed
@@ -102,6 +102,7 @@ def generate_code_prompt(user_prompt: str, language: str) -> str:
 def main():
     # Sidebar navigation
     st.sidebar.page_link("main.py", label="Home", icon="🏠")
+    st.sidebar.page_link("pages/requirementChat.py", label="Solution Generator based on requirement", icon="💬")
     st.sidebar.page_link("pages/imageBase.py", label="Image Base AI Code Generator", icon="👨‍💻")
     st.sidebar.page_link("pages/textBase.py", label="Text Base AI Code Generator", icon="📖")
     st.sidebar.page_link("http://www.google.com", label="Google", icon="🌎")
@@ -109,10 +110,10 @@ def main():
 
     try:
         # Get the prompt
-        userPrompt = st.text_area("Input the user prompt")
+        userPrompt = st.text_area("Input and Refine the user prompt")
         language = st.selectbox(
             "Select the programming language:",
-            options=["Python", "JavaScript", "Java", "C++", "C#", "Ruby", "PHP"],
+            options=["Python", "JavaScript", "Java", "C++", "C#", "Ruby", "PHP", "Rust"],
             index=0  # Default to the first option ("Python")
         )
 
@@ -132,31 +133,6 @@ def main():
             # st.subheader("Explanation:")
             st.write(explanation)
 
-    #     # Refine the description
-    #     st.write("🔍 Refining description with visual comparison...")
-    #     refine_prompt = f"Compare the described UI elements with the provided image and identify any missing elements or inaccuracies. Also Describe the color of the elements. Provide a refined and accurate description of the UI elements based on this comparison. Here is the initial description: {description}"
-    #     refined_description = send_message_to_model(refine_prompt)
-    #     st.write(refined_description)
-
-    #     # Generate HTML
-    #     st.write("🛠️ Generating website...")
-    #     html_prompt = f"Create an HTML file based on the following UI description, using the UI elements described in the previous response. Include {framework} CSS within the HTML file to style the elements. Make sure the colors used are the same as the original UI. The UI needs to be responsive and mobile-first, matching the original UI as closely as possible. Do not include any explanations or comments. Avoid using ```html. and ``` at the end. ONLY return the HTML code with inline CSS. Here is the refined description: {refined_description}"
-    #     initial_html = send_message_to_model(html_prompt)
-    #     st.code(initial_html, language='html')
-
-    #     # Refine HTML
-    #     st.write("🔧 Refining website...")
-    #     refine_html_prompt = f"Validate the following HTML code based on the UI description and image and provide a refined version of the HTML code with {framework} CSS that improves accuracy, responsiveness, and adherence to the original design. ONLY return the refined HTML code with inline CSS. Avoid using ```html. and ``` at the end. Here is the initial HTML: {initial_html}"
-    #     refined_html = send_message_to_model(refine_html_prompt)
-    #     st.code(refined_html, language='html')
-
-    #     # Save the refined HTML to a file
-    #     with open("index.html", "w") as file:
-    #         file.write(refined_html)
-    #     st.success("HTML file 'index.html' has been created.")
-
-    #     # Provide download link for HTML
-    #     st.download_button(label="Download HTML", data=refined_html, file_name="index.html", mime="text/html")
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
